@@ -24,9 +24,9 @@ import time
 import math
 
 '''
-Moves a robot arm based on joint waypoints according to gesture recognition.
+Moves a robot arm based on joint waypoints according to fingers gestures recognition.
 It accepts 2 different robotic arms:
-* Universal Robots UR10 --> can be only moved in simulation (Omniverse Kit Isaac Sim)
+* Universal Robots UR10 --> can be only moved in simulation (Isaac Sim environment)
 * Denso Cobotta --> can be only moved in real
 
 Fingers gestures are as follows:
@@ -38,11 +38,11 @@ Fingers gestures are as follows:
 
 '''
 
-# A Python codelet for a robotic arm control based on hand gesture recognition
+# A Python codelet for a robotic arm control based on fingers gestures recognition
 #
-# Fingers gesture is classified using a resnet18 neural network properly trained.
-# The output of the neural network is used to command a pre-stored position
-# (in joint space) to the robotic arm
+# Fingers gestures are classified using a resnet18 neural network properly trained.
+# The output of the neural network is used to command pre-stored positions
+# (in joint space) to a robotic arm
 class ImageRegression(Codelet):
     def start(self):
         # This part will be run once in the beginning of the program
@@ -134,8 +134,10 @@ class ImageRegression(Codelet):
         index_finger_x = int(self._camera.width * (index_finger_x / 2.0 + 0.5))
         index_finger_y = int(self._camera.height * (index_finger_y / 2.0 + 0.5))
         
+        # Compute the x and y centroids of the detected fingers
         centroid_x = (middle_finger_x + index_finger_x) / 2.0
         centroid_y = (middle_finger_y + index_finger_y) / 2.0
+        # Compute the distance between the detected fingers
         fingers_distance = math.sqrt((middle_finger_x - index_finger_x)**2 + (middle_finger_y - index_finger_y)**2)
 
         if ((self._centroid_x_prev == None) or (self._centroid_y_prev == None)):
@@ -178,18 +180,19 @@ class ImageRegression(Codelet):
                 self._move_up = False
                 self._move_down = True
    
-        # if arm state data are not available, do nothing (return)
+        # Get robot status
+        # If arm state data are not available, do nothing (return)
         state_msg = self.rx.message
         if state_msg is None:
             return
             
-        # read arm state message received
+        # Read arm state message received
         state_values = Composite.parse_composite_message(state_msg, self._quantities)
         if len(self._entities) != len(state_values):
             raise ValueError("Size of state doesn't match number of joints")
          
         if (fingers_distance >= self._open_threshold):
-            # gesture "open fingers" --> robot going home
+            # Gesture "open fingers" --> robot going home
             self._move_right = False
             self._move_left = False
             self._move_up = False
@@ -200,30 +203,30 @@ class ImageRegression(Codelet):
                 print("Robot going home... ")
             self._joint_targets = self._position_home
         elif (self._move_right):
-            # gesture "swipe right"
+            # Gesture "swipe right"
             if (not np.all(self._joint_targets == self._position_1)):
                 print("Moving robot to position #1... ")
             self._joint_targets = self._position_1
         elif (self._move_left):
-            # gesture "swipe left"
+            # Gesture "swipe left"
             if (not np.all(self._joint_targets == self._position_2)):
                 print("Moving robot to position #2... ")
             self._joint_targets = self._position_2
         elif (self._move_up):
-            # gesture "swipe up"
+            # Gesture "swipe up"
             if (not np.all(self._joint_targets == self._position_3)):
                 print("Moving robot to position #3... ")
             self._joint_targets = self._position_3
         elif (self._move_down):
-            # gesture "swipe down"
+            # Gesture "swipe down"
             if (not np.all(self._joint_targets == self._position_4)):
                 print("Moving robot to position #4... ")
             self._joint_targets = self._position_4
         else:
-            # no gesture detected
+            # No gesture detected
             self._joint_targets = None
                 
-        # if you want to print out debug information, just comment out the following lines
+        # If you want to print out debug information, just comment out the following lines
         # print(" Detected fingers positions : middle x {:05.2f} --- middle y {:05.2f} --- index x {:05.2f} --- index y {:05.2f}".format(middle_finger_x, middle_finger_y, index_finger_x, index_finger_y))
         # print(" Detected fingers positions : centroid x {:05.2f} --- centroid y {:05.2f} --- distance {:05.2f}".format(centroid_x, centroid_y, fingers_distance))
         # if self._joint_targets is not None:
@@ -232,7 +235,7 @@ class ImageRegression(Codelet):
         # if state_values is not None:
             # print(" Arm state values : ", *state_values, sep=' ; ')
 
-        # send message with robot target position
+        # Send message with robot target position
         if (self._joint_targets is not None):
             cmd_values = np.array([x for x in self._joint_targets.tolist()], dtype=np.float64)
             self.tx._msg = Composite.create_composite_message(self._quantities, cmd_values)
@@ -256,7 +259,7 @@ if __name__ == '__main__':
     parser.add_argument("--model", help="Path top trained model.", default='/home/railab/nvdli-data/regression/fingers_control_model.pth')
     args = parser.parse_args()
 
-    # get kinematic file and joints
+    # Get kinematic file and joints
     kinematic_file = "apps/assets/kinematic_trees/{}.kinematic.json".format(args.arm)
     joints = []
     with open(kinematic_file, 'r') as fd:

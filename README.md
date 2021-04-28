@@ -31,18 +31,18 @@ The structure of the repository is as follows:
  3. Configure the Jetson Nano in order to work with *NVIDIA Isaac SDK* (https://docs.nvidia.com/isaac/isaac/doc/setup.html)
  4. Download and install *NVIDIA DLI Docker container* on the Jetson Nano as explained here: https://courses.nvidia.com/courses/course-v1:DLI+S-RX-02+V2/about
  5. Download and install **PyTorch** on the Jetson Nano as explained here: https://github.com/dusty-nv/jetson-inference/blob/master/docs/building-repo-2.md
- 6. Download and install **Jetcam** python packages on the Jetson Nano as explained here https://github.com/NVIDIA-AI-IOT/jetcam
+ 6. Download and install **Jetcam** python package on the Jetson Nano as explained here https://github.com/NVIDIA-AI-IOT/jetcam
 
 ## Software Configuration
 
- 1. Copy the *"railab"* folder in the Isaac SDK Apps folder on the Desktop PC (e.g. /home/railab/isaac/isaac-sdk-20201201-427971df2/sdk/apps)
- 2. Modify the content of the *navsim_tcp_subgraph.json* file so to point to the Desktop PC IP address, where Isaac Sim is installed (it should be in the folder "*\<Isaac SDK installation path\>/sdk/packages/navsim/apps/"*)
+ 1. Copy the *"railab"* folder in the *Isaac SDK "Apps"* folder on the Desktop PC (e.g. /home/railab/isaac/isaac-sdk-20201201-427971df2/sdk/apps)
+ 2. Modify the content of the *navsim_tcp_subgraph.json* file so to point to the Desktop PC IP address, where *Isaac Sim* is installed (it should be in the folder "*\<Isaac SDK installation path\>/sdk/packages/navsim/apps/"*)
 
 ![navsimTcpSubgraph](images/navsimTcpSubgraph.png)
 
  3. Compile and deploy the *"ai_app"* package according to https://docs.nvidia.com/isaac/isaac/doc/getting_started.html (*"Deploying and Running on Jetson"* Section):
-	1. ```cd \<Isaac SDK installation path\>/sdk```
-	2. ```./../engine/engine/build/deploy.sh --remote_user \<jetson nano user\> -p //apps/railab/arm_control_ai:ai_app-pkg -d jetpack44 -h \<jetson nano ip address\>```
+	1. ```cd <Isaac SDK installation path>/sdk```
+	2. ```./../engine/engine/build/deploy.sh --remote_user <jetson nano user> -p //apps/railab/arm_control_ai:ai_app-pkg -d jetpack44 -h <jetson nano ip address>```
  4. Copy the *"fingers_control_model.pth"* into the Jetson Nano (in the path that you prefer)
 
 ## Neural Network Training
@@ -69,8 +69,8 @@ The structure of the repository is as follows:
 ![IsaacSim](images/IsaacSim.png) 
  
  5. Run the "ai_app.py" application in the Jetson Nano
-	1. ```cd \<user home directory\>/deploy/railab/ai_app-pkg/```
-	2. ```.run ./apps/railab/arm_control_ai/ai_app.py --model \<path to the trained pth model\>```
+	1. ```cd <user home directory>/deploy/railab/ai_app-pkg/```
+	2. ```.run ./apps/railab/arm_control_ai/ai_app.py --model <path to the trained pth model>```
  6. Place the fingers in front of the camera and move them to move the robot
     
 ### Bonus: Moving a Real Robot
