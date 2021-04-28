@@ -41,9 +41,9 @@ The structure of the repository is as follows:
 ![navsimTcpSubgraph](images/navsimTcpSubgraph.png)
 
  3. Compile and deploy the *"ai_app"* package according to https://docs.nvidia.com/isaac/isaac/doc/getting_started.html (*"Deploying and Running on Jetson"* Section):
-	1. `cd \<Isaac SDK installation path\>/sdk
-	2. `./../engine/engine/build/deploy.sh --remote_user \<jetson nano user\> -p //apps/railab/arm_control_ai:ai_app-pkg -d jetpack44 -h \<jetson nano ip address\>
- 4. Copy the *"fingers_control_model.pth"* into the Jetson Nano
+	1. ```cd \<Isaac SDK installation path\>/sdk```
+	2. ```./../engine/engine/build/deploy.sh --remote_user \<jetson nano user\> -p //apps/railab/arm_control_ai:ai_app-pkg -d jetpack44 -h \<jetson nano ip address\>```
+ 4. Copy the *"fingers_control_model.pth"* into the Jetson Nano (in the path that you prefer)
 
 ## Neural Network Training
 
@@ -69,8 +69,8 @@ The structure of the repository is as follows:
 ![IsaacSim](images/IsaacSim.png) 
  
  5. Run the "ai_app.py" application in the Jetson Nano
-	1. `cd \<user home directory\>/deploy/railab/ai_app-pkg/
-	2. `.run ./apps/railab/arm_control_ai/ai_app.py --model \<path to the trained pth model\>
+	1. ```cd \<user home directory\>/deploy/railab/ai_app-pkg/```
+	2. ```.run ./apps/railab/arm_control_ai/ai_app.py --model \<path to the trained pth model\>```
  6. Place the fingers in front of the camera and move them to move the robot
     
 ### Bonus: Moving a Real Robot
@@ -79,4 +79,5 @@ The FingersGesture application was also tested with a real robot, a [DENSO WAVE 
 Robot drivers (based on [b-cap communication protocol](https://www.denso-wave.com/en/robot/product/function/b-CAP.html) ) were developed and integrated into the Isaac SDK.
 
 However, this repository does not contain the source code of the DENSO WAVE Cobotta drivers.
+
 If interested, please contact <info@railab.com>
