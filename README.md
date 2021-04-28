@@ -19,10 +19,10 @@ The network was trained to detect 5 different fingers gestures:
 The project has been submitted to NVIDIA’s Deep Learning Institute (DLI) for the **Jetson AI Specialist certification** (https://developer.nvidia.com/embedded/learn/jetson-ai-certification-programs).
 
 The structure of the repository is as follows:
- * isaac sdk apps\arm_control_ai: Isaac SDK application to control robot motion based on the output of the Deep Neural Network;
- * jetson nano\fingers_A: it contains the image dataset used for training the network;
- * jetson nano\fingers_control_model.pth: the network model after training, used for the demo;
- * images: it contains the images used for this README file.
+ * _isaac sdk apps\arm_control_ai_: Isaac SDK application to control robot motion based on the output of the Deep Neural Network;
+ * _jetson nano\fingers_A_: it contains the image dataset used for training the network;
+ * _jetson nano\fingers_control_model.pth_: the network model after training, used for the demo;
+ * _images_: it contains the images used for this README file.
 
 ## Requirements
 
