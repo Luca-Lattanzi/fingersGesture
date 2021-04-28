@@ -20,8 +20,8 @@ The project has been submitted to NVIDIA’s Deep Learning Institute (DLI) for t
 
 The structure of the repository is as follows:
  * _isaac sdk apps\arm_control_ai_: Isaac SDK application to control robot motion based on the output of the Deep Neural Network;
- * _jetson nano\fingers_A_: it contains the image dataset used for training the network;
- * _jetson nano\fingers_control_model.pth_: the network model after training, used for the demo;
+ * _jetsonNano\fingers_A_: it contains the image dataset used for training the network;
+ * _jetsonNano\fingers_control_model.pth_: the network model after training, used for the demo;
  * _images_: it contains the images used for this README file.
 
 ## Requirements
