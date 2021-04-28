@@ -1,0 +1,47 @@
+{
+  "name": "AI_Control",
+  "modules": [
+    "sight"
+  ],
+  "config": {
+    "AI_Control": {
+      "PyCodelet": {
+        "desired_position_meters": 1.0,
+        "gain": 1.0
+      }
+    },
+    "websight": {
+      "WebsightServer": {
+        "port": 3000,
+      }
+    }
+  },
+  "graph": {
+    "nodes": [
+      {
+        "name": "AI_Control",
+        "components": [
+          {
+            "name": "message_ledger",
+            "type": "isaac::alice::MessageLedger"
+          }
+        ]
+      },
+	  {
+        "name": "interface",
+        "components": [
+          {
+            "name": "ledger",
+            "type": "isaac::alice::MessageLedger"
+          },
+          {
+            "name": "subgraph",
+            "type": "isaac::alice::Subgraph"
+          }
+        ]
+      }
+
+    ],
+    "edges": [ ]
+  }
+}
