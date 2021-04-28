@@ -7,10 +7,10 @@ Fingers movements are detected thanks to a *Deep Neural Network* (Resnet18) that
 The output of the neural network is used to command a pre-stored position (in joint space) to the robotic arm.
 
 The network was trained to detect 5 different fingers gestures:
- * middle and index fingers open.
- * middle and index fingers close and swipe towards right.
- * middle and index fingers close and swipe towards left.
- * middle and index fingers close and swipe towards up.
+ * middle and index fingers open;
+ * middle and index fingers close and swipe towards right;
+ * middle and index fingers close and swipe towards left;
+ * middle and index fingers close and swipe towards up;
  * middle and index fingers close and swipe towards down.
 
 ![FingersGestures](images/FingersGestures.png)
@@ -18,10 +18,10 @@ The network was trained to detect 5 different fingers gestures:
 The project has been submitted to NVIDIA’s Deep Learning Institute (DLI) for the **Jetson AI Specialist certification** (https://developer.nvidia.com/embedded/learn/jetson-ai-certification-programs).
 
 The structure of the repository is as follows:
- * isaac sdk apps\arm_control_ai: Isaac SDK application to control robot motion based on the output of the Deep Neural Network.
- * jetson nano\fingers_A: it contains the image dataset used for training the network.
- * jetson nano\fingers_control_model.pth: the network model after training, used for the demo.
- * images: it contains the images used for this README file.
+ * isaac sdk apps\arm_control_ai: Isaac SDK application to control robot motion based on the output of the Deep Neural Network;
+ * jetson nano\fingers_A: it contains the image dataset used for training the network;
+ * jetson nano\fingers_control_model.pth: the network model after training, used for the demo;
+ * images: it contains the images used for this README file;
  * video: it contains a video of the demo application.
 
 ## Requirements
@@ -40,7 +40,7 @@ The structure of the repository is as follows:
 
 ![navsimTcpSubgraph](images/navsimTcpSubgraph.png)
 
- 3. Compile and deploy the *"ai_app"* package according to https://docs.nvidia.com/isaac/isaac/doc/getting_started.html (*"Deploying and Running on Jetson"* Section)
+ 3. Compile and deploy the *"ai_app"* package according to https://docs.nvidia.com/isaac/isaac/doc/getting_started.html (*"Deploying and Running on Jetson"* Section):
 	1. `cd \<Isaac SDK installation path\>/sdk
 	2. `./../engine/engine/build/deploy.sh --remote_user \<jetson nano user\> -p //apps/railab/arm_control_ai:ai_app-pkg -d jetpack44 -h \<jetson nano ip address\>
  4. Copy the *"fingers_control_model.pth"* into the Jetson Nano
