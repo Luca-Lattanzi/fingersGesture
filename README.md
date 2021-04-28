@@ -1,10 +1,11 @@
 # Overview
 
 This repository contains source code for the *"Fingers Gesture Robot Control"* AI project. 
-The program allows to control a robotic arm using fingers gestures (e.g. swipe gesture).
+The program allows to control a robotic arm using fingers gestures (e.g. swipe gesture), through the [NVIDIA Isaac SDK](https://developer.nvidia.com/isaac-sdk) toolbox.
 
 Fingers movements are detected thanks to a *Deep Neural Network* (Resnet18) that processes images acquired by a USB camera.
-The output of the neural network is used to command a pre-stored position (in joint space) to the robotic arm.
+The output of the neural network is used to command pre-stored positions (in joint space) to a robotic arm.
+The software has been tested on a [JetsonNano](https://developer.nvidia.com/embedded/jetson-nano-developer-kit) platform, connected to both a simulated environment ([NVIDIA Isaac Sim](https://developer.nvidia.com/isaac-sim) ) and a real robot ([DENSO WAVE Cobotta robot arm](https://www.denso-wave.com/en/robot/product/collabo/cobotta.html) ).
 
 The network was trained to detect 5 different fingers gestures:
  * middle and index fingers open;
@@ -21,8 +22,7 @@ The structure of the repository is as follows:
  * isaac sdk apps\arm_control_ai: Isaac SDK application to control robot motion based on the output of the Deep Neural Network;
  * jetson nano\fingers_A: it contains the image dataset used for training the network;
  * jetson nano\fingers_control_model.pth: the network model after training, used for the demo;
- * images: it contains the images used for this README file;
- * video: it contains a video of the demo application.
+ * images: it contains the images used for this README file.
 
 ## Requirements
 
