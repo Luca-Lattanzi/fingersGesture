@@ -9,10 +9,10 @@ The software has been tested on a [JetsonNano](https://developer.nvidia.com/embe
 
 The network was trained to detect 5 different fingers gestures:
  * middle and index fingers open;
- * middle and index fingers close and swipe towards right;
- * middle and index fingers close and swipe towards left;
- * middle and index fingers close and swipe towards up;
- * middle and index fingers close and swipe towards down.
+ * middle and index fingers closed and swipe towards right;
+ * middle and index fingers closed and swipe towards left;
+ * middle and index fingers closed and swipe towards up;
+ * middle and index fingers closed and swipe towards down.
 
 ![FingersGestures](images/FingersGestures.png)
 
