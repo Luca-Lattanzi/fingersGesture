@@ -27,7 +27,7 @@ The structure of the repository is as follows:
 ## Requirements
 
  1. Download and install *NVIDIA Isaac Sim* on the Desktop PC from https://developer.nvidia.com/isaac-sim
- 2. Download and install *NVIDIA Isaac SDK* on the Desktop PC from https://developer.nvidia.com/isaac/downloads
+ 2. Download and install *NVIDIA Isaac SDK* on the Desktop PC from https://developer.nvidia.com/isaac/downloads (tested with version 2020.2)
  3. Configure the Jetson Nano in order to work with *NVIDIA Isaac SDK* (https://docs.nvidia.com/isaac/isaac/doc/setup.html)
  4. Download and install *NVIDIA DLI Docker container* on the Jetson Nano as explained here: https://courses.nvidia.com/courses/course-v1:DLI+S-RX-02+V2/about
  5. Download and install **PyTorch** on the Jetson Nano as explained here: https://github.com/dusty-nv/jetson-inference/blob/master/docs/building-repo-2.md
